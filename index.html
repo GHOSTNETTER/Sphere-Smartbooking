@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sphere SmartBooking — by Revelation Sphere Technologies</title>
+  <meta name="description" content="Eastern Cape's premium booking platform for panel beaters, driving schools, salons & barbers, restaurants & guesthouses. Set up by RST. From R99/month."/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --rst:#1a3a6b; --rst2:#0f2447;
+      --gold:#c9a84c; --gold2:#e8c56a;
+      --bg:#f8f7f4; --surface:#fff;
+      --dark:#0d0d0d; --muted:#6b6b6b; --border:#e2e0db;
+      --green:#1e7a4a; --red:#c0392b;
+      --radius:14px;
+      --shadow:0 2px 24px rgba(0,0,0,.07);
+      --shadow-lg:0 8px 48px rgba(0,0,0,.12);
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--dark);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+    .container{max-width:1100px;margin:0 auto;padding:0 28px}
+    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.1}
+    h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:700}
+    h2{font-size:clamp(1.9rem,3.5vw,3rem);font-weight:700}
+    h3{font-size:1.3rem;font-weight:600}
+    em{font-style:italic;color:var(--gold)}
+    .hidden{display:none!important}
+
+    /* NAVBAR */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,247,244,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 28px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+    .brand-ball{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--rst),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;color:#fff;flex-shrink:0}
+    .brand-text{display:flex;flex-direction:column}
+    .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--dark);line-height:1}
+    .brand-by{font-size:.6rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+    .nav-links{list-style:none;display:flex;align-items:center;gap:28px}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--rst)}
+    .nav-cta{background:var(--rst)!important;color:#fff!important;padding:10px 22px;border-radius:50px;font-weight:600!important;transition:background .2s!important}
+    .nav-cta:hover{background:var(--rst2)!important}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px}
+    .mob-menu{display:none;flex-direction:column;padding:16px 28px;gap:14px;border-top:1px solid var(--border);background:var(--bg)}
+    .mob-menu a{color:var(--muted);text-decoration:none;font-weight:500}
+    .mob-menu.open{display:flex}
+
+    /* HERO */
+    .hero{padding:130px 0 80px;position:relative;overflow:hidden}
+    .hero-glow{position:absolute;top:-100px;right:-150px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.09),transparent 65%);pointer-events:none}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(26,58,107,.07);border:1px solid rgba(26,58,107,.15);color:var(--rst);padding:5px 14px;border-radius:50px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+    .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
+    .hero h1{margin-bottom:20px}
+    .hero-desc{font-size:1.05rem;color:var(--muted);max-width:480px;margin-bottom:32px;line-height:1.75}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+    .btn-rst{background:var(--rst);color:#fff;padding:14px 30px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:all .2s;display:inline-block;border:none;cursor:pointer;font-family:'Outfit',sans-serif}
+    .btn-rst:hover{background:var(--rst2);transform:translateY(-2px);box-shadow:0 6px 24px rgba(26,58,107,.25)}
+    .btn-outline{border:2px solid var(--border);color:var(--dark);padding:14px 30px;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .2s;display:inline-block}
+    .btn-outline:hover{border-color:var(--rst);color:var(--rst)}
+    .trust-row{display:flex;gap:20px;flex-wrap:wrap}
+    .trust{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+    .trust::before{content:'✓';color:var(--green);font-weight:700}
+
+    /* MOCK DASHBOARD */
+    .mock{background:var(--surface);border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border)}
+    .mock-top{background:var(--rst);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+    .mock-top-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:#fff}
+    .mock-top-sub{font-size:.65rem;color:rgba(255,255,255,.55);letter-spacing:.05em;text-transform:uppercase}
+    .live-pip{display:flex;align-items:center;gap:5px;font-size:.68rem;background:rgba(255,255,255,.12);padding:3px 10px;border-radius:50px;color:#fff}
+    .ldot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 1.8s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .mock-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+    .mk{background:var(--surface);padding:14px;text-align:center}
+    .mk-v{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--rst);line-height:1}
+    .mk-v.gold{color:var(--gold)}
+    .mk-l{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+    .mock-rows{padding:10px 14px;display:flex;flex-direction:column;gap:7px}
+    .mock-row{display:flex;align-items:center;gap:10px;background:#fafaf8;border:1px solid var(--border);border-radius:9px;padding:9px 12px}
+    .mock-row-i{font-size:1rem}
+    .mock-row-info{flex:1}
+    .mock-row-info strong{font-size:.82rem;display:block}
+    .mock-row-info span{font-size:.7rem;color:var(--muted)}
+    .spill{padding:2px 9px;border-radius:50px;font-size:.66rem;font-weight:700}
+    .spill.c{background:rgba(30,122,74,.1);color:var(--green)}
+    .spill.p{background:rgba(201,168,76,.1);color:#9a7226}
+    .mock-foot{padding:10px 14px;border-top:1px solid var(--border);font-size:.68rem;color:var(--muted);display:flex;justify-content:space-between}
+    .mock-foot a{color:var(--rst);font-weight:600;text-decoration:none}
+
+    /* PROOF BAR */
+    .proof-bar{background:var(--rst);color:rgba(255,255,255,.6);padding:13px 28px}
+    .proof-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap;font-size:.8rem}
+    .proof-inner strong{color:#fff}
+    .psep{opacity:.3}
+
+    /* SECTIONS */
+    .section{padding:88px 0}
+    .sec-head{text-align:center;margin-bottom:52px}
+    .sec-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+    .sec-head p{color:var(--muted);max-width:500px;margin:10px auto 0;font-size:.98rem}
+
+    /* HOW IT WORKS */
+    .how-section{background:var(--dark)}
+    .how-section h2{color:#fff}
+    .how-section .sec-head p{color:rgba(255,255,255,.45)}
+    .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:2px;background:rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden}
+    .how-card{background:#111;padding:32px 24px;position:relative}
+    .how-card::after{content:attr(data-n);position:absolute;top:16px;right:20px;font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:rgba(255,255,255,.04);line-height:1}
+    .how-line{width:24px;height:2px;background:var(--gold);border-radius:2px;margin-bottom:16px}
+    .how-icon{font-size:1.6rem;margin-bottom:12px}
+    .how-card h4{font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:700;color:#fff;margin-bottom:7px}
+    .how-card p{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.65}
+
+    /* SECTORS */
+    .sectors-section{background:var(--bg)}
+    .sectors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+    .sc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:34px 26px;transition:all .25s;position:relative;overflow:hidden}
+    .sc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rst),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+    .sc-card:hover::after{transform:scaleX(1)}
+    .sc-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+    .sc-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--border);line-height:1;margin-bottom:8px}
+    .sc-emoji{font-size:1.9rem;margin-bottom:12px}
+    .sc-card h3{margin-bottom:8px}
+    .sc-card p{color:var(--muted);font-size:.87rem;margin-bottom:16px}
+    .sc-card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .sc-card li{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:7px}
+    .sc-card li::before{content:'—';color:var(--gold);font-weight:700;flex-shrink:0}
+    .sc-card.feat{background:var(--rst);border-color:var(--rst)}
+    .sc-card.feat h3,.sc-pop{color:#fff}
+    .sc-card.feat p,.sc-card.feat li{color:rgba(255,255,255,.55)}
+    .sc-card.feat .sc-num{color:rgba(255,255,255,.07)}
+    .sc-card.feat li::before{color:var(--gold2)}
+    .sc-pop{position:absolute;top:16px;right:16px;background:var(--gold);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:50px}
+    /* NEW badge for new sectors */
+    .sc-new{position:absolute;top:16px;right:16px;background:var(--green);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:50px}
+
+    /* PRICING */
+    .pricing-section{background:#f2f1ed}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:22px;max-width:960px;margin:0 auto}
+    .pc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:34px 28px;display:flex;flex-direction:column;transition:box-shadow .2s;position:relative}
+    .pc:hover{box-shadow:var(--shadow-lg)}
+    .pc.pop{background:var(--rst);border-color:var(--rst);transform:scale(1.03)}
+    .pop-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:50px;white-space:nowrap}
+    .pc-tier{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .pc.pop .pc-tier{color:rgba(255,255,255,.5)}
+    .pc-amt{font-family:'Cormorant Garamond',serif;font-size:2.7rem;font-weight:700;color:var(--dark);line-height:1;margin-bottom:3px}
+    .pc.pop .pc-amt{color:#fff}
+    .pc-per{font-size:.8rem;color:var(--muted);margin-bottom:5px}
+    .pc.pop .pc-per{color:rgba(255,255,255,.5)}
+    .pc-setup{font-size:.8rem;color:var(--muted);margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+    .pc.pop .pc-setup{color:rgba(255,255,255,.5);border-bottom-color:rgba(255,255,255,.15)}
+    .pc-setup strong{color:var(--rst)}
+    .pc.pop .pc-setup strong{color:var(--gold2)}
+    .pc-feats{list-style:none;display:flex;flex-direction:column;gap:9px;flex:1;margin-bottom:24px}
+    .pc-feats li{font-size:.86rem;display:flex;gap:9px;align-items:flex-start}
+    .pc-feats li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+    .pc.pop .pc-feats li{color:rgba(255,255,255,.8)}
+    .pc.pop .pc-feats li::before{color:var(--gold2)}
+    .btn-pc{display:block;text-align:center;text-decoration:none;padding:13px;border-radius:50px;font-weight:700;font-size:.88rem;transition:all .2s;font-family:'Outfit',sans-serif;border:none;cursor:pointer}
+    .btn-pc.solid{background:var(--rst);color:#fff}
+    .btn-pc.solid:hover{background:var(--rst2)}
+    .btn-pc.bdr{border:2px solid var(--border);color:var(--dark);background:transparent}
+    .btn-pc.bdr:hover{border-color:var(--rst);color:var(--rst)}
+    .btn-pc.gld{background:var(--gold);color:#fff}
+    .btn-pc.gld:hover{background:var(--gold2)}
+    .price-note{text-align:center;margin-top:24px;font-size:.78rem;color:var(--muted)}
+
+    /* SIGN UP FORM */
+    .signup-section{background:var(--rst);padding:80px 0}
+    .signup-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .signup-left h2{color:#fff;margin-bottom:14px}
+    .signup-left p{color:rgba(255,255,255,.55);font-size:.98rem;margin-bottom:24px;line-height:1.75}
+    .signup-perks{display:flex;flex-direction:column;gap:12px}
+    .sp-item{display:flex;align-items:center;gap:10px;font-size:.88rem;color:rgba(255,255,255,.7)}
+    .sp-item::before{content:'✓';color:var(--gold2);font-weight:700;flex-shrink:0}
+
+    /* DYNAMIC FORM FIELDS */
+    .dynamic-fields{display:none}
+    .dynamic-fields.active{display:block}
+
+    /* SIGNUP FORM CARD */
+    .signup-form-card{background:var(--surface);border-radius:20px;padding:36px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+    .signup-form-card h3{font-size:1.5rem;margin-bottom:4px}
+    .signup-form-card .sub{font-size:.82rem;color:var(--muted);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+    .sfg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+    .sfg label{font-size:.68rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+    .sfg input,.sfg select,.sfg textarea{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;color:var(--dark);padding:11px 14px;font-family:'Outfit',sans-serif;font-size:.9rem;transition:border-color .2s;outline:none;width:100%}
+    .sfg input:focus,.sfg select:focus,.sfg textarea:focus{border-color:var(--rst);box-shadow:0 0 0 3px rgba(26,58,107,.07)}
+    .sfg select option{background:#fff}
+    .sfg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn-signup{width:100%;padding:15px;background:var(--rst);color:#fff;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;border:none;border-radius:50px;cursor:pointer;transition:all .2s;margin-top:4px}
+    .btn-signup:hover{background:var(--rst2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,58,107,.3)}
+    .btn-signup:disabled{opacity:.6;cursor:not-allowed;transform:none}
+    .signup-note{text-align:center;font-size:.72rem;color:var(--muted);margin-top:10px}
+
+    /* FOOTER */
+    .footer{background:#080808;color:rgba(255,255,255,.35);padding:52px 0 28px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+    .footer h5{color:rgba(255,255,255,.6);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+    .footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .footer ul a{color:rgba(255,255,255,.35);text-decoration:none;font-size:.86rem;transition:color .2s}
+    .footer ul a:hover{color:var(--gold)}
+    .footer p{font-size:.86rem;line-height:1.75}
+    .f-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:8px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    .footer-bottom p{font-size:.74rem}
+    .footer-bottom a{color:var(--gold);text-decoration:none}
+
+    /* SUCCESS MODAL */
+    .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+    .modal-box{background:var(--surface);border-radius:24px;padding:44px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.25)}
+    .modal-box h3{font-size:1.8rem;margin-bottom:12px}
+    .modal-box p{color:var(--muted);font-size:.9rem;line-height:1.65;margin-bottom:8px}
+    .modal-close-btn{margin-top:20px;padding:13px 28px;background:var(--rst);color:#fff;border:none;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s}
+    .modal-close-btn:hover{background:var(--rst2)}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-inner,.signup-inner{grid-template-columns:1fr}
+      .mock{display:none}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:560px){
+      .footer-grid{grid-template-columns:1fr}
+      .pc.pop{transform:none}
+      .sfg-row{grid-template-columns:1fr}
+    }
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-ball">S</div>
+      <div class="brand-text">
+        <span class="brand-name">Sphere SmartBooking</span>
+        <span class="brand-by">by Revelation Sphere Technologies</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#sectors">Who It's For</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#signup" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <a href="#how">How It Works</a>
+    <a href="#sectors">Who It's For</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#signup">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="reveal">
+        <div class="eyebrow">Eastern Cape's Booking Platform</div>
+        <h1>Your Business.<br/><em>Fully Booked.</em></h1>
+        <p class="hero-desc">Sphere SmartBooking by RST gives Eastern Cape businesses a professional online booking system — fully set up for you, with your business name, your services, your brand. From R99/month.</p>
+        <div class="hero-btns">
+          <a href="#signup" class="btn-rst">Get Started Today</a>
+          <a href="#how" class="btn-outline">See How It Works</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust">30-day free trial</div>
+          <div class="trust">RST sets everything up</div>
+          <div class="trust">No tech skills needed</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="mock">
+          <div class="mock-top">
+            <div><div class="mock-top-title">Sphere SmartBooking</div><div class="mock-top-sub">Sphere SmartBooking Admin</div></div>
+            <div class="live-pip"><span class="ldot"></span>Live</div>
+          </div>
+          <div class="mock-kpis">
+            <div class="mk"><div class="mk-v">18</div><div class="mk-l">Today</div></div>
+            <div class="mk"><div class="mk-v gold">R6,200</div><div class="mk-l">This Week</div></div>
+            <div class="mk"><div class="mk-v">142</div><div class="mk-l">This Month</div></div>
+          </div>
+          <div class="mock-rows">
+            <div class="mock-row"><span class="mock-row-i">✂️</span><div class="mock-row-info"><strong>Zanele Nkosi</strong><span>Box Braids · 09:00</span></div><span class="spill c">Confirmed</span></div>
+            <div class="mock-row"><span class="mock-row-i">🔧</span><div class="mock-row-info"><strong>Sipho Dlamini</strong><span>Panel Repair · 11:00</span></div><span class="spill c">Confirmed</span></div>
+            <div class="mock-row"><span class="mock-row-i">🚗</span><div class="mock-row-info"><strong>Nomvula Mkhize</strong><span>Code 8 Lesson · 14:00</span></div><span class="spill p">Pending</span></div>
+          </div>
+          <div class="mock-foot"><span>Powered by Sphere SmartBooking · RST</span><a href="#">View All →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-inner">
+    <span>🔧 <strong>Panel Beaters</strong></span><span class="psep">·</span>
+    <span>🚗 <strong>Driving Schools</strong></span><span class="psep">·</span>
+    <span>✂️ <strong>Salons & Barbers</strong></span><span class="psep">·</span>
+    <span>🍽️ <strong>Restaurants</strong></span><span class="psep">·</span>
+    <span>🏠 <strong>BnB & Guesthouses</strong></span><span class="psep">·</span>
+    <span>📍 <strong>Eastern Cape</strong></span><span class="psep">·</span>
+    <span>⚡ <strong>Powered by RST</strong></span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section how-section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">The Process</div>
+      <h2 style="color:#fff">How It Works</h2>
+      <p>RST handles the entire setup. You just run your business.</p>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-card" data-n="01"><div class="how-line"></div><div class="how-icon">📝</div><h4>You Sign Up</h4><p>Fill in the form on this page. Tell us your business name, type and services.</p></div>
+      <div class="how-card" data-n="02"><div class="how-line"></div><div class="how-icon">⚙️</div><h4>RST Builds It</h4><p>We set up your booking page, customer database and all email automations — branded for you.</p></div>
+      <div class="how-card" data-n="03"><div class="how-line"></div><div class="how-icon">🚀</div><h4>You Go Live</h4><p>Your booking link goes live. Share it on WhatsApp, Facebook or print it on your flyer.</p></div>
+      <div class="how-card" data-n="04"><div class="how-line"></div><div class="how-icon">📲</div><h4>Bookings Flow In</h4><p>Customers book online 24/7. You get an email alert instantly. They get a confirmation.</p></div>
+      <div class="how-card" data-n="05"><div class="how-line"></div><div class="how-icon">📊</div><h4>You Stay in Control</h4><p>All bookings saved to your own private Google Sheet. View, confirm or cancel anytime.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section id="sectors" class="section sectors-section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Who It's For</div>
+      <h2>Built for EC Service Businesses</h2>
+      <p>Five sectors, one platform — all managed by RST.</p>
+    </div>
+    <div class="sectors-grid reveal">
+      <div class="sc-card">
+        <div class="sc-num">01</div>
+        <div class="sc-emoji">🔧</div>
+        <h3>Panel Beaters</h3>
+        <p>Manage vehicle drop-offs, damage assessments and repair bookings.</p>
+        <ul>
+          <li>Vehicle registration & model capture</li>
+          <li>Service type selection</li>
+          <li>Damage description notes</li>
+          <li>Time slot management</li>
+        </ul>
+      </div>
+      <div class="sc-card feat">
+        <div class="sc-pop">Most Popular</div>
+        <div class="sc-num">02</div>
+        <div class="sc-emoji">🚗</div>
+        <h3>Driving Schools</h3>
+        <p>Code 8, Code 10 and learner licence bookings — zero phone tag.</p>
+        <ul>
+          <li>Licence code selection</li>
+          <li>ID number collection</li>
+          <li>Lesson type & experience level</li>
+          <li>K53 theory class scheduling</li>
+        </ul>
+      </div>
+      <div class="sc-card">
+        <div class="sc-num">03</div>
+        <div class="sc-emoji">✂️</div>
+        <h3>Salons & Barbers</h3>
+        <p>Let clients book weaves, fades, braids and grooming online.</p>
+        <ul>
+          <li>Full categorised service menu</li>
+          <li>Stylist preference selection</li>
+          <li>Hair type & special notes</li>
+          <li>Repeat client management</li>
+        </ul>
+      </div>
+      <div class="sc-card">
+        <div class="sc-new">New</div>
+        <div class="sc-num">04</div>
+        <div class="sc-emoji">🍽️</div>
+        <h3>Restaurants</h3>
+        <p>Accept table reservations around the clock — no missed calls, no double-bookings.</p>
+        <ul>
+          <li>Date, time & party size selection</li>
+          <li>Indoor / outdoor / private room preference</li>
+          <li>Dietary & occasion notes</li>
+          <li>Instant confirmation to guest</li>
+        </ul>
+      </div>
+      <div class="sc-card">
+        <div class="sc-new">New</div>
+        <div class="sc-num">05</div>
+        <div class="sc-emoji">🏠</div>
+        <h3>BnB & Guesthouses</h3>
+        <p>Fill your rooms with confident online bookings — guests see availability, you stay organised.</p>
+        <ul>
+          <li>Check-in & check-out date picker</li>
+          <li>Room type & guest count capture</li>
+          <li>Special requests & breakfast preference</li>
+          <li>ID & contact details collection</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section pricing-section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Transparent Pricing</div>
+      <h2>Simple Plans, No Surprises</h2>
+      <p>One-time setup fee + monthly subscription. RST sets everything up — you just share your link.</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="pc">
+        <div class="pc-tier">Standard Plan</div>
+        <div class="pc-amt">R99</div>
+        <div class="pc-per">/ month</div>
+        <div class="pc-setup">+ <strong>R700</strong> once-off setup fee</div>
+        <ul class="pc-feats">
+          <li>1 business type booking form</li>
+          <li>Your branded booking page</li>
+          <li>Your own Google Sheet database</li>
+          <li>Email notifications to you & customer</li>
+          <li>Basic booking management</li>
+          <li>Powered by Sphere SmartBooking branding</li>
+          <li>Email support from RST</li>
+        </ul>
+        <a href="#signup" class="btn-pc bdr">Get Started</a>
+      </div>
+    </div>
+    <p class="price-note">All prices in ZAR · VAT excluded · 30-day free trial · Cancel anytime with 30 days notice</p>
+  </div>
+</section>
+
+<!-- SIGN UP FORM -->
+<section id="signup" class="signup-section">
+  <div class="container">
+    <div class="signup-inner">
+      <div class="signup-left reveal">
+        <div class="sec-eyebrow" style="color:var(--gold2)">Get Started</div>
+        <h2>Ready to Go Digital?</h2>
+        <p>Fill in your details. RST will WhatsApp you within 24 hours to confirm your plan and start your setup.</p>
+        <div class="signup-perks">
+          <div class="sp-item">30-day free trial — no payment upfront</div>
+          <div class="sp-item">RST sets up everything for you</div>
+          <div class="sp-item">Your own booking link in 48 hours</div>
+          <div class="sp-item">Your own Google Sheet — only your bookings</div>
+          <div class="sp-item">Cancel anytime — no lock-in contracts</div>
+        </div>
+        <div style="margin-top:28px;padding:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius)">
+          <p style="color:rgba(255,255,255,.5);font-size:.82rem;margin-bottom:6px">Prefer to WhatsApp directly?</p>
+          <a href="https://wa.me/27680368550?text=Hi%20RST%2C%20I%20want%20Sphere%20SmartBooking%20for%20my%20business"
+             style="color:var(--gold2);font-weight:700;font-size:.95rem;text-decoration:none;display:flex;align-items:center;gap:8px"
+             target="_blank">
+            💬 Chat with RST on 068 036 8550
+          </a>
+        </div>
+      </div>
+
+      <div class="signup-form-card reveal">
+        <h3>Start Your Free Trial</h3>
+        <p class="sub">We'll set up your booking system and send you the link within 48 hours.</p>
+
+        <!-- NETLIFY FORM — collects new client signups -->
+        <form id="signupForm"
+              name="ssb-new-client-signup"
+              method="POST"
+              data-netlify="true"
+              netlify
+              netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="ssb-new-client-signup"/>
+          <p class="hidden"><label>Skip: <input name="bot-field"/></label></p>
+
+          <div class="sfg-row">
+            <div class="sfg">
+              <label>Business Name *</label>
+              <input type="text" name="business_name" placeholder="e.g. Nandi's Hair Studio" required/>
+            </div>
+            <div class="sfg">
+              <label>Business Type *</label>
+              <select name="business_type" id="businessTypeSelect" required>
+                <option value="">-- Select --</option>
+                <option value="Salon & Barber">Salon &amp; Barber</option>
+                <option value="Panel Beater">Panel Beater</option>
+                <option value="Driving School">Driving School</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="BnB & Guesthouse">BnB &amp; Guesthouse</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- DYNAMIC: Restaurant fields -->
+          <div class="dynamic-fields" id="fields-restaurant">
+            <div class="sfg-row">
+              <div class="sfg">
+                <label>No. of Tables / Covers</label>
+                <input type="text" name="restaurant_covers" placeholder="e.g. 12 tables / 60 seats"/>
+              </div>
+              <div class="sfg">
+                <label>Seating Areas</label>
+                <select name="restaurant_seating">
+                  <option value="">-- Select --</option>
+                  <option>Indoor only</option>
+                  <option>Outdoor only</option>
+                  <option>Indoor &amp; Outdoor</option>
+                  <option>Private rooms available</option>
+                </select>
+              </div>
+            </div>
+            <div class="sfg">
+              <label>Booking Slot Duration</label>
+              <select name="restaurant_slot">
+                <option value="">-- Select --</option>
+                <option>45 minutes</option>
+                <option>1 hour</option>
+                <option>1.5 hours</option>
+                <option>2 hours</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- DYNAMIC: BnB / Guesthouse fields -->
+          <div class="dynamic-fields" id="fields-bnb">
+            <div class="sfg-row">
+              <div class="sfg">
+                <label>No. of Rooms</label>
+                <input type="number" name="bnb_rooms" placeholder="e.g. 6" min="1"/>
+              </div>
+              <div class="sfg">
+                <label>Room Types Available</label>
+                <select name="bnb_room_types">
+                  <option value="">-- Select --</option>
+                  <option>Single only</option>
+                  <option>Double / Twin</option>
+                  <option>Mixed (single, double, family)</option>
+                  <option>Ensuite / Self-catering units</option>
+                </select>
+              </div>
+            </div>
+            <div class="sfg">
+              <label>Breakfast Offered?</label>
+              <select name="bnb_breakfast">
+                <option value="">-- Select --</option>
+                <option>Yes — included</option>
+                <option>Yes — optional add-on</option>
+                <option>No breakfast</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="sfg-row">
+            <div class="sfg">
+              <label>Your Name *</label>
+              <input type="text" name="owner_name" placeholder="Owner / manager name" required/>
+            </div>
+            <div class="sfg">
+              <label>Town / City *</label>
+              <select name="town" required>
+                <option value="">-- Select --</option>
+                <option>Mthatha</option>
+                <option>East London</option>
+                <option>Port Elizabeth (Gqeberha)</option>
+                <option>King William's Town</option>
+                <option>Queenstown</option>
+                <option>Butterworth</option>
+                <option>Komani</option>
+                <option>Aliwal North</option>
+                <option>Other EC Town</option>
+              </select>
+            </div>
+          </div>
+          <div class="sfg-row">
+            <div class="sfg">
+              <label>WhatsApp Number *</label>
+              <input type="tel" name="phone" placeholder="068 036 8550" required/>
+            </div>
+            <div class="sfg">
+              <label>Email Address *</label>
+              <input type="email" name="email" placeholder="your@gmail.com" required/>
+            </div>
+          </div>
+          <div class="sfg">
+            <label>Plan You're Interested In *</label>
+            <select name="plan" required>
+              <option value="">-- Select a plan --</option>
+              <option>Starter — R99/month + R500 setup</option>
+            </select>
+          </div>
+          <div class="sfg">
+            <label>Tell us about your services (optional)</label>
+            <textarea name="services_info" rows="2" placeholder="e.g. Box braids, relaxers, fades — approx price range…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-signup" id="signupBtn">Submit &amp; Start Free Trial →</button>
+          <p class="signup-note">RST will WhatsApp you on the number above within 24 hours to confirm and begin setup.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">Sphere SmartBooking</div>
+        <p>A Revelation Sphere Technologies product. Empowering Eastern Cape businesses with professional digital booking systems.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#sectors">Who It's For</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>RST</h5>
+        <ul>
+          <li><a href="about.html">About RST</a></li>
+          <li><a href="#">Our Products</a></li>
+          <li><a href="#signup">Get Started</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact RST</h5>
+        <ul>
+          <li><a href="https://wa.me/27680368550">💬 068 036 8550</a></li>
+          <li><a href="mailto:revelationsphertechnologies@gmail.com">revelationsphertechnologies@gmail.com</a></li>
+          <li><a href="#">Mthatha, Eastern Cape</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <a href="https://revelationspheretechnologies.netlify.app/">Revelation Sphere Technologies</a> · All rights reserved</p>
+      <p>Sphere SmartBooking v1.0 · Eastern Cape, South Africa</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SUCCESS MODAL -->
+<div id="signupModal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <div style="font-size:3rem;margin-bottom:14px">🎉</div>
+    <h3>You're Signed Up!</h3>
+    <p>Thank you! The RST team will WhatsApp you within <strong>24 hours</strong> to confirm your plan and kick off your setup.</p>
+    <p>Your booking link will be live within <strong>48 hours</strong>.</p>
+    <button class="modal-close-btn" onclick="document.getElementById('signupModal').style.display='none'">Close ✓</button>
+  </div>
+</div>
+
+<script>
+function toggleMenu(){ document.getElementById('mobMenu').classList.toggle('open'); }
+
+// Dynamic form fields based on business type
+document.getElementById('businessTypeSelect').addEventListener('change', function(){
+  const val = this.value;
+  document.querySelectorAll('.dynamic-fields').forEach(el => el.classList.remove('active'));
+  if(val === 'Restaurant') document.getElementById('fields-restaurant').classList.add('active');
+  if(val === 'BnB & Guesthouse') document.getElementById('fields-bnb').classList.add('active');
+});
+
+// Signup form
+document.getElementById('signupForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = document.getElementById('signupBtn');
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+  fetch('/', {
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(new FormData(this)).toString()
+  })
+  .then(()=>{ document.getElementById('signupModal').style.display='flex'; this.reset(); document.querySelectorAll('.dynamic-fields').forEach(el=>el.classList.remove('active')); btn.textContent='Submit & Start Free Trial →'; btn.disabled=false; })
+  .catch(()=>{ document.getElementById('signupModal').style.display='flex'; this.reset(); document.querySelectorAll('.dynamic-fields').forEach(el=>el.classList.remove('active')); btn.textContent='Submit & Start Free Trial →'; btn.disabled=false; });
+});
+
+document.getElementById('signupModal').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
+
+// Scroll reveal
+const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
