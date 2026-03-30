@@ -3,8 +3,103 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sphere SmartBooking — by Revelation Sphere Technologies</title>
-  <meta name="description" content="Eastern Cape's premium booking platform for panel beaters, driving schools, salons & barbers, restaurants & guesthouses. Set up by RST. From R99/month."/>
+
+  <!-- ═══════════════════════════════════════════
+       PRIMARY SEO
+  ═══════════════════════════════════════════ -->
+  <title>Sphere SmartBooking — Online Booking System for Eastern Cape Businesses | RST</title>
+  <meta name="description" content="Sphere SmartBooking by Revelation Sphere Technologies. Professional online booking systems for panel beaters, driving schools, salons, barbers, restaurants and guesthouses in the Eastern Cape. Set up by RST from R99/month."/>
+  <meta name="keywords" content="online booking system Eastern Cape, booking software Mthatha, panel beater booking, driving school booking, salon booking app, barber booking, restaurant reservations Eastern Cape, BnB booking system, Revelation Sphere Technologies, RST, Sphere SmartBooking, small business booking South Africa"/>
+  <meta name="author" content="Revelation Sphere Technologies"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://spheresmartbooking.netlify.app/"/>
+
+  <!-- ═══════════════════════════════════════════
+       OPEN GRAPH (Facebook, WhatsApp, LinkedIn)
+  ═══════════════════════════════════════════ -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://spheresmartbooking.netlify.app/"/>
+  <meta property="og:title" content="Sphere SmartBooking — Your Business. Fully Booked."/>
+  <meta property="og:description" content="Eastern Cape's booking platform for panel beaters, driving schools, salons, restaurants & guesthouses. RST sets it all up for you. From R99/month."/>
+  <meta property="og:image" content="https://spheresmartbooking.netlify.app/og-image.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="Sphere SmartBooking — Online Booking System for Eastern Cape Businesses"/>
+  <meta property="og:site_name" content="Sphere SmartBooking"/>
+  <meta property="og:locale" content="en_ZA"/>
+
+  <!-- ═══════════════════════════════════════════
+       TWITTER / X CARD
+  ═══════════════════════════════════════════ -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Sphere SmartBooking — Your Business. Fully Booked."/>
+  <meta name="twitter:description" content="Eastern Cape's booking platform for panel beaters, driving schools, salons, restaurants & guesthouses. From R99/month."/>
+  <meta name="twitter:image" content="https://spheresmartbooking.netlify.app/og-image.jpg"/>
+
+  <!-- ═══════════════════════════════════════════
+       GEO / LOCAL SEO
+  ═══════════════════════════════════════════ -->
+  <meta name="geo.region" content="ZA-EC"/>
+  <meta name="geo.placename" content="Mthatha, Eastern Cape, South Africa"/>
+  <meta name="geo.position" content="-31.5892;28.7843"/>
+  <meta name="ICBM" content="-31.5892, 28.7843"/>
+
+  <!-- ═══════════════════════════════════════════
+       STRUCTURED DATA — JSON-LD
+  ═══════════════════════════════════════════ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sphere SmartBooking",
+    "description": "Professional online booking system for Eastern Cape service businesses — panel beaters, driving schools, salons, barbers, restaurants and guesthouses. Set up and managed by Revelation Sphere Technologies.",
+    "url": "https://spheresmartbooking.netlify.app/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "99",
+      "priceCurrency": "ZAR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "99",
+        "priceCurrency": "ZAR",
+        "unitText": "month"
+      }
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Revelation Sphere Technologies",
+      "url": "https://revelationspheretechnologies.netlify.app/",
+      "telephone": "+27680368550",
+      "email": "revelationsphertechnologies@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mthatha",
+        "addressRegion": "Eastern Cape",
+        "addressCountry": "ZA"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "Eastern Cape"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "+27680368550",
+        "availableLanguage": ["English", "Xhosa"]
+      }
+    }
+  }
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       FAVICON (update paths once you have assets)
+  ═══════════════════════════════════════════ -->
+  <link rel="icon" type="image/png" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#1a3a6b"/>
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -27,8 +122,6 @@
     h3{font-size:1.3rem;font-weight:600}
     em{font-style:italic;color:var(--gold)}
     .hidden{display:none!important}
-
-    /* NAVBAR */
     .navbar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,247,244,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
     .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 28px}
     .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
@@ -46,8 +139,6 @@
     .mob-menu{display:none;flex-direction:column;padding:16px 28px;gap:14px;border-top:1px solid var(--border);background:var(--bg)}
     .mob-menu a{color:var(--muted);text-decoration:none;font-weight:500}
     .mob-menu.open{display:flex}
-
-    /* HERO */
     .hero{padding:130px 0 80px;position:relative;overflow:hidden}
     .hero-glow{position:absolute;top:-100px;right:-150px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.09),transparent 65%);pointer-events:none}
     .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -63,8 +154,6 @@
     .trust-row{display:flex;gap:20px;flex-wrap:wrap}
     .trust{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:5px}
     .trust::before{content:'✓';color:var(--green);font-weight:700}
-
-    /* MOCK DASHBOARD */
     .mock{background:var(--surface);border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border)}
     .mock-top{background:var(--rst);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
     .mock-top-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:#fff}
@@ -88,20 +177,14 @@
     .spill.p{background:rgba(201,168,76,.1);color:#9a7226}
     .mock-foot{padding:10px 14px;border-top:1px solid var(--border);font-size:.68rem;color:var(--muted);display:flex;justify-content:space-between}
     .mock-foot a{color:var(--rst);font-weight:600;text-decoration:none}
-
-    /* PROOF BAR */
     .proof-bar{background:var(--rst);color:rgba(255,255,255,.6);padding:13px 28px}
     .proof-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap;font-size:.8rem}
     .proof-inner strong{color:#fff}
     .psep{opacity:.3}
-
-    /* SECTIONS */
     .section{padding:88px 0}
     .sec-head{text-align:center;margin-bottom:52px}
     .sec-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
     .sec-head p{color:var(--muted);max-width:500px;margin:10px auto 0;font-size:.98rem}
-
-    /* HOW IT WORKS */
     .how-section{background:var(--dark)}
     .how-section h2{color:#fff}
     .how-section .sec-head p{color:rgba(255,255,255,.45)}
@@ -112,8 +195,6 @@
     .how-icon{font-size:1.6rem;margin-bottom:12px}
     .how-card h4{font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:700;color:#fff;margin-bottom:7px}
     .how-card p{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.65}
-
-    /* SECTORS */
     .sectors-section{background:var(--bg)}
     .sectors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
     .sc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:34px 26px;transition:all .25s;position:relative;overflow:hidden}
@@ -133,10 +214,7 @@
     .sc-card.feat .sc-num{color:rgba(255,255,255,.07)}
     .sc-card.feat li::before{color:var(--gold2)}
     .sc-pop{position:absolute;top:16px;right:16px;background:var(--gold);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:50px}
-    /* NEW badge for new sectors */
     .sc-new{position:absolute;top:16px;right:16px;background:var(--green);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:50px}
-
-    /* PRICING */
     .pricing-section{background:#f2f1ed}
     .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:22px;max-width:960px;margin:0 auto}
     .pc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:34px 28px;display:flex;flex-direction:column;transition:box-shadow .2s;position:relative}
@@ -166,8 +244,6 @@
     .btn-pc.gld{background:var(--gold);color:#fff}
     .btn-pc.gld:hover{background:var(--gold2)}
     .price-note{text-align:center;margin-top:24px;font-size:.78rem;color:var(--muted)}
-
-    /* SIGN UP FORM */
     .signup-section{background:var(--rst);padding:80px 0}
     .signup-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
     .signup-left h2{color:#fff;margin-bottom:14px}
@@ -175,12 +251,8 @@
     .signup-perks{display:flex;flex-direction:column;gap:12px}
     .sp-item{display:flex;align-items:center;gap:10px;font-size:.88rem;color:rgba(255,255,255,.7)}
     .sp-item::before{content:'✓';color:var(--gold2);font-weight:700;flex-shrink:0}
-
-    /* DYNAMIC FORM FIELDS */
     .dynamic-fields{display:none}
     .dynamic-fields.active{display:block}
-
-    /* SIGNUP FORM CARD */
     .signup-form-card{background:var(--surface);border-radius:20px;padding:36px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
     .signup-form-card h3{font-size:1.5rem;margin-bottom:4px}
     .signup-form-card .sub{font-size:.82rem;color:var(--muted);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
@@ -194,8 +266,6 @@
     .btn-signup:hover{background:var(--rst2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,58,107,.3)}
     .btn-signup:disabled{opacity:.6;cursor:not-allowed;transform:none}
     .signup-note{text-align:center;font-size:.72rem;color:var(--muted);margin-top:10px}
-
-    /* FOOTER */
     .footer{background:#080808;color:rgba(255,255,255,.35);padding:52px 0 28px}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
     .footer h5{color:rgba(255,255,255,.6);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
@@ -207,16 +277,12 @@
     .footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     .footer-bottom p{font-size:.74rem}
     .footer-bottom a{color:var(--gold);text-decoration:none}
-
-    /* SUCCESS MODAL */
     .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
     .modal-box{background:var(--surface);border-radius:24px;padding:44px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.25)}
     .modal-box h3{font-size:1.8rem;margin-bottom:12px}
     .modal-box p{color:var(--muted);font-size:.9rem;line-height:1.65;margin-bottom:8px}
     .modal-close-btn{margin-top:20px;padding:13px 28px;background:var(--rst);color:#fff;border:none;border-radius:50px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s}
     .modal-close-btn:hover{background:var(--rst2)}
-
-    /* RESPONSIVE */
     @media(max-width:900px){
       .hero-inner,.signup-inner{grid-template-columns:1fr}
       .mock{display:none}
@@ -235,7 +301,6 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
     <a href="#" class="brand">
@@ -261,7 +326,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="container">
@@ -283,7 +347,7 @@
       <div class="reveal">
         <div class="mock">
           <div class="mock-top">
-            <div><div class="mock-top-title">Sphere SmartBooking</div><div class="mock-top-sub">Sphere SmartBooking Admin</div></div>
+            <div><div class="mock-top-title">Nandi's Hair Studio</div><div class="mock-top-sub">Sphere SmartBooking Admin</div></div>
             <div class="live-pip"><span class="ldot"></span>Live</div>
           </div>
           <div class="mock-kpis">
@@ -303,7 +367,6 @@
   </div>
 </section>
 
-<!-- PROOF BAR -->
 <div class="proof-bar">
   <div class="proof-inner">
     <span>🔧 <strong>Panel Beaters</strong></span><span class="psep">·</span>
@@ -316,7 +379,6 @@
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
 <section id="how" class="section how-section">
   <div class="container">
     <div class="sec-head">
@@ -334,7 +396,6 @@
   </div>
 </section>
 
-<!-- SECTORS -->
 <section id="sectors" class="section sectors-section">
   <div class="container">
     <div class="sec-head">
@@ -344,8 +405,7 @@
     </div>
     <div class="sectors-grid reveal">
       <div class="sc-card">
-        <div class="sc-num">01</div>
-        <div class="sc-emoji">🔧</div>
+        <div class="sc-num">01</div><div class="sc-emoji">🔧</div>
         <h3>Panel Beaters</h3>
         <p>Manage vehicle drop-offs, damage assessments and repair bookings.</p>
         <ul>
@@ -357,8 +417,7 @@
       </div>
       <div class="sc-card feat">
         <div class="sc-pop">Most Popular</div>
-        <div class="sc-num">02</div>
-        <div class="sc-emoji">🚗</div>
+        <div class="sc-num">02</div><div class="sc-emoji">🚗</div>
         <h3>Driving Schools</h3>
         <p>Code 8, Code 10 and learner licence bookings — zero phone tag.</p>
         <ul>
@@ -369,8 +428,7 @@
         </ul>
       </div>
       <div class="sc-card">
-        <div class="sc-num">03</div>
-        <div class="sc-emoji">✂️</div>
+        <div class="sc-num">03</div><div class="sc-emoji">✂️</div>
         <h3>Salons & Barbers</h3>
         <p>Let clients book weaves, fades, braids and grooming online.</p>
         <ul>
@@ -382,8 +440,7 @@
       </div>
       <div class="sc-card">
         <div class="sc-new">New</div>
-        <div class="sc-num">04</div>
-        <div class="sc-emoji">🍽️</div>
+        <div class="sc-num">04</div><div class="sc-emoji">🍽️</div>
         <h3>Restaurants</h3>
         <p>Accept table reservations around the clock — no missed calls, no double-bookings.</p>
         <ul>
@@ -395,8 +452,7 @@
       </div>
       <div class="sc-card">
         <div class="sc-new">New</div>
-        <div class="sc-num">05</div>
-        <div class="sc-emoji">🏠</div>
+        <div class="sc-num">05</div><div class="sc-emoji">🏠</div>
         <h3>BnB & Guesthouses</h3>
         <p>Fill your rooms with confident online bookings — guests see availability, you stay organised.</p>
         <ul>
@@ -410,7 +466,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
 <section id="pricing" class="section pricing-section">
   <div class="container">
     <div class="sec-head">
@@ -440,7 +495,6 @@
   </div>
 </section>
 
-<!-- SIGN UP FORM -->
 <section id="signup" class="signup-section">
   <div class="container">
     <div class="signup-inner">
@@ -468,17 +522,9 @@
       <div class="signup-form-card reveal">
         <h3>Start Your Free Trial</h3>
         <p class="sub">We'll set up your booking system and send you the link within 48 hours.</p>
-
-        <!-- NETLIFY FORM — collects new client signups -->
-        <form id="signupForm"
-              name="ssb-new-client-signup"
-              method="POST"
-              data-netlify="true"
-              netlify
-              netlify-honeypot="bot-field">
+        <form id="signupForm" name="ssb-new-client-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="ssb-new-client-signup"/>
           <p class="hidden"><label>Skip: <input name="bot-field"/></label></p>
-
           <div class="sfg-row">
             <div class="sfg">
               <label>Business Name *</label>
@@ -497,8 +543,6 @@
               </select>
             </div>
           </div>
-
-          <!-- DYNAMIC: Restaurant fields -->
           <div class="dynamic-fields" id="fields-restaurant">
             <div class="sfg-row">
               <div class="sfg">
@@ -527,8 +571,6 @@
               </select>
             </div>
           </div>
-
-          <!-- DYNAMIC: BnB / Guesthouse fields -->
           <div class="dynamic-fields" id="fields-bnb">
             <div class="sfg-row">
               <div class="sfg">
@@ -556,7 +598,6 @@
               </select>
             </div>
           </div>
-
           <div class="sfg-row">
             <div class="sfg">
               <label>Your Name *</label>
@@ -589,17 +630,9 @@
             </div>
           </div>
           <div class="sfg">
-            <label>Plan You're Interested In *</label>
-            <select name="plan" required>
-              <option value="">-- Select a plan --</option>
-              <option>Starter — R99/month + R500 setup</option>
-            </select>
-          </div>
-          <div class="sfg">
             <label>Tell us about your services (optional)</label>
             <textarea name="services_info" rows="2" placeholder="e.g. Box braids, relaxers, fades — approx price range…"></textarea>
           </div>
-
           <button type="submit" class="btn-signup" id="signupBtn">Submit &amp; Start Free Trial →</button>
           <p class="signup-note">RST will WhatsApp you on the number above within 24 hours to confirm and begin setup.</p>
         </form>
@@ -608,7 +641,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -648,7 +680,6 @@
   </div>
 </footer>
 
-<!-- SUCCESS MODAL -->
 <div id="signupModal" class="modal-overlay" style="display:none">
   <div class="modal-box">
     <div style="font-size:3rem;margin-bottom:14px">🎉</div>
@@ -661,16 +692,12 @@
 
 <script>
 function toggleMenu(){ document.getElementById('mobMenu').classList.toggle('open'); }
-
-// Dynamic form fields based on business type
 document.getElementById('businessTypeSelect').addEventListener('change', function(){
   const val = this.value;
   document.querySelectorAll('.dynamic-fields').forEach(el => el.classList.remove('active'));
   if(val === 'Restaurant') document.getElementById('fields-restaurant').classList.add('active');
   if(val === 'BnB & Guesthouse') document.getElementById('fields-bnb').classList.add('active');
 });
-
-// Signup form
 document.getElementById('signupForm').addEventListener('submit', function(e){
   e.preventDefault();
   const btn = document.getElementById('signupBtn');
@@ -683,10 +710,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e){
   .then(()=>{ document.getElementById('signupModal').style.display='flex'; this.reset(); document.querySelectorAll('.dynamic-fields').forEach(el=>el.classList.remove('active')); btn.textContent='Submit & Start Free Trial →'; btn.disabled=false; })
   .catch(()=>{ document.getElementById('signupModal').style.display='flex'; this.reset(); document.querySelectorAll('.dynamic-fields').forEach(el=>el.classList.remove('active')); btn.textContent='Submit & Start Free Trial →'; btn.disabled=false; });
 });
-
 document.getElementById('signupModal').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
-
-// Scroll reveal
 const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 </script>
